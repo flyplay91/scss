@@ -1,0 +1,205 @@
+/*
+ * Background fill effect mixins
+ */
+@mixin bg-gridlines-2($degree: -65deg, $col1: $secondary, $col2: transparent) {
+  background-image: repeating-linear-gradient($degree, $col1, $col1 1px, $col2 1px, $col2 6px);
+  background-repeat: repeat;
+}
+
+@mixin bg-gridlines($fromLeft: true, $col1: $grey, $col2: transparent) {
+  background-image: linear-gradient(to right, $col1 1px, $col2 1px), linear-gradient(to bottom, $col1 1px, $col2 1px);
+  background-repeat: repeat;
+  background-size: 18px 20px;
+  @if $fromLeft != true {
+    transform: scaleX(-1);
+  }
+}
+
+@mixin bg-dots($col1: $dots, $col2: transparent) {
+  background-image: radial-gradient($col1 2px, $col1 2px, $col2 3px);
+  background-repeat: repeat;
+  background-size: 26px 30px;
+}
+
+@mixin bg-dots-s($col1: $dots, $col2: transparent, $scale: 0.5) {
+  @include bg-dots($col1, $col2);
+  background-size: 32px 38px;
+  transform: scale($scale);
+  transform-origin: top left;
+}
+
+@mixin slashes-small($pseudo: ":after") {
+  &#{$pseudo} {
+    content: "";
+    position: absolute;
+    background: url("/img/SVG_Slashes_Small.png") no-repeat;
+    background-size: contain;
+    width: 226px;
+    height: 100px;
+    right: 0;
+    top: 0;
+    transform: translate(50%, -50%);
+  }
+}
+
+@mixin dots-small($pseudo: ":after") {
+  &#{$pseudo} {
+    content: "";
+    position: absolute;
+    @include bg-dots();
+    width: 226px;
+    height: 110px;
+    right: 0;
+    top: 0;
+    transform: translate(0, -50%);
+  }
+}
+
+@mixin hidden($duration: 0.5s) {
+  opacity: 1;
+  visibility: visible;
+  transition: all $duration ease-in;
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/*
+ * Layout helper mixins
+ */
+@mixin _inner-padding($padding: rem(62), $sufixes: left right) {
+  @each $sufix in $sufixes {
+    padding-#{$sufix}: $padding;
+  }
+}
+
+@mixin align-left-padding() {
+  @include _inner-padding(rem(135));
+}
+
+@mixin content-padding() {
+  @include _inner-padding($inner-padding-left);
+}
+
+@mixin content-padding-h() {
+  @include inner-padding($inner-padding-left, top bottom);
+}
+
+@mixin inbound-left-width() {
+  width: $home-col1-width;
+
+  @include media("1400") {
+    width: calc(720px + 0.06 * 100vw - 62px);
+  }
+  @include media("1800") {
+    width: calc(900px + 0.06 * 100vw - 62px);
+  }
+}
+
+@mixin inbound-left-width-flex() {
+  @include _width-flex($home-col1-width);
+
+  @include media("1400") {
+    @include _width-flex(calc(720px + 0.06 * 100vw - 62px));
+  }
+
+  @include media("1800") {
+    @include _width-flex(calc(900px + 0.06 * 100vw - 62px));
+  }
+}
+
+@mixin _width-flex($width) {
+  flex: 0 0 $width;
+}
+
+/*
+ * Font size helper mixins
+ */
+@mixin _font-size($weight: 400, $size: 22, $line: 32) {
+  line-height: rem($line);
+  font-size: rem($size);
+  font-weight: $weight;
+}
+
+@mixin font-size-m() {
+  @include _font-size();
+}
+
+@mixin font-size-l() {
+  @include _font-size(400, 24, 34);
+}
+
+@mixin font-size-xl($weight: 400) {
+  @include _font-size($weight, 30, 38);
+}
+
+@mixin font-size-xl_xtra() {
+  @include _font-size(700, 62, 73);
+}
+
+@mixin font-size-xxl() {
+  @include _font-size(700, 82, 73);
+}
+
+@mixin font-size-xxxl() {
+  @include _font-size(700, 152, 140);
+}
+
+@mixin font-size-a() {
+  @include _font-size(700, 20, 24);
+}
+
+/*
+ * Animation creation
+ */
+
+/* animation mixing
+keyframe animation
+@include animation('animation-name .4s 1')*/
+
+@mixin animation($animate...) {
+  $max: length($animate);
+  $animations: "";
+
+  @for $i from 1 through $max {
+    $animations: #{$animations + nth($animate, $i)};
+
+    @if $i < $max {
+      $animations: #{$animations + ", "};
+    }
+  }
+  -webkit-animation: $animations;
+  -moz-animation: $animations;
+  -o-animation: $animations;
+  animation: $animations;
+}
+
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    $browser: "-webkit-" !global;
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    $browser: "-moz-" !global;
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    $browser: "-o-" !global;
+    @content;
+  }
+  @keyframes #{$animationName} {
+    $browser: "" !global;
+    @content;
+  }
+}
+$browser: null;
+
+@include keyframes(animation-name) {
+  0% {
+    #{$browser}transform: translate3d(100%, 0, 0);
+  }
+  100% {
+    #{$browser}transform: translate3d(0%, 0, 0);
+  }
+}

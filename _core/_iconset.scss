@@ -1,0 +1,53 @@
+svg {
+  &.icon-logo {
+    fill: $white;
+  }
+  &.icon-search {
+    stroke: $white;
+  }
+  &.icon-play {
+    stroke: $white;
+    fill: $white;
+  }
+  &.icon-plus {
+    stroke: $white;
+  }
+  &.icon-facebook {
+    fill: $white;
+  }
+  &.icon-instagram {
+    fill: $white;
+  }
+  &.icon-youtube {
+    fill: $white;
+  }
+  &.icon-linkedin {
+    fill: $white;
+  }
+  &.icon-twitter {
+    fill: $white;
+  }
+}
+
+svg {
+  &.icon-facebook {
+    width: rem(12);
+    height: rem(20);
+  }
+  &.icon-instagram {
+    width: rem(18);
+    height: rem(18);
+  }
+  &.icon-youtube {
+    width: rem(18);
+    height: rem(16);
+  }
+  &.icon-linkedin {
+    width: rem(16);
+    height: rem(16);
+  }
+  &.icon-twitter {
+    width: rem(18);
+    height: rem(18);
+  }
+}

@@ -1,0 +1,53 @@
+:root {
+  --icon-size: 14px;
+  --icon-thikness: 4px;
+}
+
+.collapsible {
+  .menu-item-has-children {
+    > a {
+      &:focus,
+      &:active,
+      &:focus-visible {
+        outline: none;
+      }
+    }
+    > a .tag {
+      position: relative;
+      &:before,
+      &:after {
+        content: "";
+        border-color: $white;
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        width: var(--icon-size);
+        height: var(--icon-size);
+      }
+
+      &:before {
+        left: 12px;
+        border-top: var(--icon-thikness) solid;
+        transform: translateY(-2px);
+      }
+
+      &:after {
+        transition: transform 0.2s ease-in;
+        transform: translateY(-50%);
+        border-left: var(--icon-thikness) solid;
+        left: 17px;
+      }
+    }
+    &[aria-expanded="true"] > a .tag:after {
+      transform: rotate(90deg) translateX(-2px) translateY(5px);
+    }
+  }
+
+  .sub-menu {
+    margin-left: 30px;
+    overflow: hidden;
+    transition: height 0.25s ease-in;
+  }
+}

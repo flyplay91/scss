@@ -1,0 +1,39 @@
+@import "~normalize-scss";
+
+// Silc Components
+@import "silc/overrides";
+@import "~silc-core/src/scss/index";
+@import "~silc-grid/src/scss/index";
+@import "~silc-accordion/src/scss/index";
+@import "~silc-nav/src/scss/index";
+@import "~silc-utilities/src/scss/index";
+
+// Core
+@import "_core/variables";
+@import "_core/mixins";
+@import "_core/iconset";
+@import "_core/placeholder-selectors";
+@import "_core/base";
+@import "_core/typography";
+@import "_core/layout";
+
+// Custom Components
+@import "components/blockquote";
+@import "components/breadcrumb";
+@import "components/button";
+@import "components/callout";
+@import "components/card";
+@import "components/carousel";
+@import "components/hero";
+@import "components/iframe";
+@import "components/lazyload";
+@import "components/modal";
+@import "components/overrides";
+@import "components/pagination";
+@import "components/privacy-consent";
+@import "components/privacy-toggle";
+@import "components/share";
+@import "components/table";
+@import "components/tags";
+@import "components/hamburger";
+@import "components/collapsible";

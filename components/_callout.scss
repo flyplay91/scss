@@ -1,0 +1,29 @@
+$callout-align: center !default;
+$callout-padding: 1rem !default;
+$callout-bg-size: cover !default;
+$callout-bg-position: center center !default;
+
+$callout_title-size: 1.5rem !default;
+$callout_title-weight: 700 !default;
+$callout_title-margin: 0 0 1rem !default;
+
+$callout_body-size: 1rem !default;
+$callout_body-margin: 1rem 0 !default;
+
+.callout {
+  background-position: $callout-bg-position;
+  background-size: $callout-bg-size;
+  padding: $callout-padding;
+  text-align: $callout-align;
+}
+
+.callout__title {
+  font-size: $callout_title-size;
+  font-weight: $callout_title-weight;
+  margin: $callout_title-margin;
+}
+
+.callout__body {
+  font-size: $callout_body-size;
+  margin: $callout_body-margin;
+}

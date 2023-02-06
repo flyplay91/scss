@@ -1,0 +1,68 @@
+$modal__overlay-background: rgba(0, 0, 0, 0.7) !default;
+
+$modal__container-background: #fff !default;
+$modal__container-padding: 30px !default;
+$modal__container-max-width: 500px !default;
+$modal__container-max-height: 100vh !default;
+$modal__container-border-radius: 0 !default;
+
+$modal__content-padding: 1rem 0 !default;
+
+$modal__title-margin: 0 !default;
+
+$modal__close_before-content: "\2715" !default;
+
+.modal {
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.3s opacity ease-in-out, 0.3s visibility ease-in-out;
+  visibility: hidden;
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.modal__overlay {
+  align-items: center;
+  background: $modal__overlay-background;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modal__container {
+  background-color: $modal__container-background;
+  padding: $modal__container-padding;
+  max-width: $modal__container-max-width;
+  max-height: $modal__container-max-height;
+  border-radius: $modal__container-border-radius;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal__content {
+  padding: $modal__content-padding;
+}
+
+.modal__title {
+  margin: $modal__title-margin;
+}
+
+.modal__close:before {
+  content: $modal__close_before-content;
+}
